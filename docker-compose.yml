@@ -1,0 +1,12 @@
+services:
+  dnsmasq:
+    image: tschaffter/docker-dnsmasq:v2.86
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    environment:
+      #/<domain>/<ipaddr>,/<domain>/<ipaddr>
+      DNSMASQ_SERVERS: /test/127.0.0.1
+    command: ["-S", "${DNSMASQ_SERVERS}"]
